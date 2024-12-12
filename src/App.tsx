@@ -63,7 +63,7 @@ const App = () => (
           />
           <Route path="/404" element={<NotFound />} />
           <Route path="/500" element={<ServerError />} />
-          <Route path="/:shortCode" element={<Redirect />} />
+          <Route path="/s/:shortCode" element={<Redirect />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
