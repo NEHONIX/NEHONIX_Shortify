@@ -1,0 +1,22 @@
+# robots.txt pour NEHONIX-Shortify
+
+# Permettre à tous les robots d'indexer
+User-agent: *
+Allow: /
+
+# Interdire l'accès aux dossiers sensibles
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Empêcher l'indexation des pages de résultats de recherche
+Disallow: /*?q=
+Disallow: /*?search=
+
+# Sitemap
+Sitemap: https://s.nehonix.space/sitemap.xml
+
+# Temps d'attente entre les requêtes (en secondes)
+Crawl-delay: 10 
