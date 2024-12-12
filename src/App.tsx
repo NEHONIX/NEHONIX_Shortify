@@ -21,7 +21,9 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
       setIsAuthenticated(!!session);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(( session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((session) => {
       setIsAuthenticated(!!session);
     });
 
@@ -29,9 +31,11 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   if (isAuthenticated === null) {
-    return <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-    </div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
@@ -49,14 +53,17 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/auth" element={<AuthPage />} />
-          <Route path="/" element={
-            <ProtectedRoute>
-              <Index />
-            </ProtectedRoute>
-          } />
-          <Route path="/:shortCode" element={<Redirect />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Index />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/404" element={<NotFound />} />
           <Route path="/500" element={<ServerError />} />
+          <Route path="/:shortCode" element={<Redirect />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
