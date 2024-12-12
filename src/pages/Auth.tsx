@@ -9,9 +9,19 @@ const AuthPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Vérifier d'abord si l'utilisateur est déjà connecté
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate("/");
+      }
+    };
+    
+    checkUser();
+
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(( session) => {
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
         navigate("/");
       }
